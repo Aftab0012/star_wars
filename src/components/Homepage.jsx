@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import MovieList from './MovieList';
 import { handleSearch } from '../utils/search';
-import { motion } from 'framer-motion';
 import LoadingAnimation from '../Animations/LoadingAnimation';
 import search from '../assets/icons/search.svg';
 import Dropdown from './Dropdown';
