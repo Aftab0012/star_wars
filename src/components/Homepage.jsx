@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import MovieList from './MovieList';
 import { handleSearch } from '../utils/search';
-import { handleSortBy } from '../utils/sortBy';
 import { motion } from 'framer-motion';
 import LoadingAnimation from '../Animations/LoadingAnimation';
+import search from '../assets/icons/search.svg';
+import Dropdown from './Dropdown';
 
 const Homepage = () => {
   const [originalData, setOriginalData] = useState([]);
@@ -57,38 +58,21 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center w-full p-4 border-b shadow-md max-sm:p-3 max-sm:shadow-sm max-sm:flex-col-reverse font-poppins max-sm:items-start">
-        <div className="flex justify-end mt-1 mb-2 max-sm:mb-0 max-sm:w-full">
-          <select
-            value={sortBy}
-            onChange={(e) =>
-              handleSortBy(
-                e.target.value,
-                setSortBy,
-                setData,
-                originalData,
-                data
-              )
-            }
-            className="p-2 text-lg border rounded-md shadow-md focus:outline-none"
-          >
-            <option value="sortby" className="text-gray-500">
-              Sort by
-            </option>
-
-            <option value="episode" className="text-gray-500">
-              Episode
-            </option>
-            <option value="title" className="text-gray-500">
-              Title
-            </option>
-          </select>
+      <div className="flex items-center justify-center w-full gap-2 p-4 border-b shadow-md max-sm:p-3 max-sm:shadow-sm max-sm:flex-col-reverse font-poppins max-sm:items-start">
+        <div className="flex justify-start my-1 max-sm:pr-2 max-sm:mb-0 max-sm:w-full">
+          <Dropdown
+            setSortBy={setSortBy}
+            data={data}
+            setData={setData}
+            originalData={originalData}
+          />
         </div>
-        <div className="flex items-center w-full p-2 bg-white rounded-md max-sm:mb-2 max-sm:border max-sm:pl-3 max-sm:w-full">
+        <div className="flex items-center w-full pl-2 bg-white border rounded-lg shadow-md max-sm:mb-2 max-sm:pl-3 max-sm:w-full">
+          <img src={search} alt="search-img" />
           <input
             type="text"
             placeholder="Search movie"
-            className="flex-grow p-2 text-lg font-normal rounded-lg sm:border-2 sm:ml-3 focus:outline-none"
+            className="flex-grow p-2 text-lg font-normal sm:ml-3 focus:outline-none"
             value={searchVal}
             onChange={(e) =>
               handleSearch(e.target.value, originalData, setSearchVal, setData)
