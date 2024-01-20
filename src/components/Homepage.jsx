@@ -57,7 +57,15 @@ const Homepage = () => {
         <span className="flex justify-end mb-2 max-sm:mb-0 max-sm:w-full">
           <select
             value={sortBy}
-            onChange={(e) => handleSortBy(e.target.value, setSortBy)}
+            onChange={(e) =>
+              handleSortBy(
+                e.target.value,
+                setSortBy,
+                setData,
+                originalData,
+                data
+              )
+            }
             className="p-2 rounded-md focus:outline-none"
           >
             <option value="sortby" className="text-gray-500">
@@ -66,8 +74,8 @@ const Homepage = () => {
             <option value="Year" className="text-gray-500">
               Year
             </option>
-            <option value="Release" className="text-gray-500">
-              Release date
+            <option value="episode" className="text-gray-500">
+              Episode
             </option>
           </select>
         </span>
