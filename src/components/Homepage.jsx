@@ -54,7 +54,7 @@ const Homepage = () => {
   return (
     <>
       <div className="flex items-center justify-center w-full p-4 border-b shadow-md max-sm:p-3 max-sm:shadow-sm max-sm:flex-col-reverse font-poppins max-sm:items-start">
-        <span className="flex justify-end mb-2 max-sm:mb-0 max-sm:w-full">
+        <div className="flex justify-end mb-2 max-sm:mb-0 max-sm:w-full">
           <select
             value={sortBy}
             onChange={(e) =>
@@ -66,24 +66,25 @@ const Homepage = () => {
                 data
               )
             }
-            className="p-2 rounded-md focus:outline-none"
+            className="p-2 text-lg rounded-md focus:outline-none"
           >
             <option value="sortby" className="text-gray-500">
               Sort by
             </option>
-            <option value="Year" className="text-gray-500">
-              Year
-            </option>
+
             <option value="episode" className="text-gray-500">
               Episode
             </option>
+            <option value="title" className="text-gray-500">
+              Title
+            </option>
           </select>
-        </span>
+        </div>
         <div className="flex items-center w-full p-2 bg-white rounded-md max-sm:mb-2 max-sm:border max-sm:pl-3 max-sm:w-full">
           <input
             type="text"
             placeholder="Search movie"
-            className="flex-grow text-lg font-normal sm:ml-3 focus:outline-none"
+            className="flex-grow p-2 text-lg font-normal rounded-lg sm:border-2 sm:ml-3 focus:outline-none"
             value={searchVal}
             onChange={(e) =>
               handleSearch(e.target.value, originalData, setSearchVal, setData)
