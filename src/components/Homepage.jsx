@@ -4,6 +4,7 @@ import MovieList from './MovieList';
 import { handleSearch } from '../utils/search';
 import { handleSortBy } from '../utils/sortBy';
 import { motion } from 'framer-motion';
+import LoadingAnimation from '../Animations/LoadingAnimation';
 
 const Homepage = () => {
   const [originalData, setOriginalData] = useState([]);
@@ -12,6 +13,7 @@ const Homepage = () => {
   const [searchVal, setSearchVal] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [animation, setAnimation] = useState();
+  const [detailsLoadingAnimation, setDetailsLoadingAnimation] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,10 +27,7 @@ const Homepage = () => {
       } catch (error) {
         console.log(error);
       } finally {
-        // Move handleAnimation inside the try block or use a setTimeout to ensure it runs after the animation is complete
-        setTimeout(() => {
-          setAnimation(false);
-        }, 200); // Adjust the duration to match your animation duration
+        setAnimation(false);
       }
     };
 
@@ -37,6 +36,7 @@ const Homepage = () => {
 
   const handleMovieDetails = (item) => {
     setSelectedMovie(item);
+    setDetailsLoadingAnimation(true);
   };
 
   const containerVariants = {
@@ -50,6 +50,10 @@ const Homepage = () => {
       },
     },
   };
+
+  setTimeout(() => {
+    setDetailsLoadingAnimation(false);
+  }, 200);
 
   return (
     <>
@@ -104,19 +108,25 @@ const Homepage = () => {
 
         <div className="flex-1 pl-2">
           {selectedMovie ? (
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="p-4 mb-4"
-            >
-              <h2 className="mb-4 text-2xl font-semibold">
-                Episode {selectedMovie.episode_id} - {selectedMovie.title}
-              </h2>
-              <p className="text-justify text-gray-700">
-                {selectedMovie.opening_crawl}
-              </p>
-            </motion.div>
+            detailsLoadingAnimation ? (
+              <div>
+                <LoadingAnimation />
+              </div>
+            ) : (
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="p-4 mb-4"
+              >
+                <h2 className="mb-4 text-2xl font-semibold">
+                  Episode {selectedMovie.episode_id} - {selectedMovie.title}
+                </h2>
+                <p className="text-justify text-gray-700">
+                  {selectedMovie.opening_crawl}
+                </p>
+              </motion.div>
+            )
           ) : (
             <div className="flex items-center justify-center h-full p-2">
               <div className="text-xl font-semibold">No movies selected</div>
