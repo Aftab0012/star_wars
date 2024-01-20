@@ -58,7 +58,7 @@ const Homepage = () => {
   return (
     <>
       <div className="flex items-center justify-center w-full p-4 border-b shadow-md max-sm:p-3 max-sm:shadow-sm max-sm:flex-col-reverse font-poppins max-sm:items-start">
-        <div className="flex justify-end mb-2 max-sm:mb-0 max-sm:w-full">
+        <div className="flex justify-end mt-1 mb-2 max-sm:mb-0 max-sm:w-full">
           <select
             value={sortBy}
             onChange={(e) =>
@@ -70,7 +70,7 @@ const Homepage = () => {
                 data
               )
             }
-            className="p-2 text-lg rounded-md focus:outline-none"
+            className="p-2 text-lg border rounded-md shadow-md focus:outline-none"
           >
             <option value="sortby" className="text-gray-500">
               Sort by
@@ -98,7 +98,7 @@ const Homepage = () => {
       </div>
 
       <div className="flex flex-col w-full min-h-screen p-4 font-poppins md:flex-row sm:flex-row">
-        <div className="flex-1 pr-2 mb-4 md:mb-0">
+        <div className="flex-1 pr-2 mb-4 md:mb-0 max-sm:border-b-2">
           <MovieList
             data={data}
             animation={animation}

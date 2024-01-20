@@ -23,7 +23,7 @@ const MovieList = ({ data, onSelectMovie, animation }) => {
               }}
               layout
               onClick={() => onSelectMovie(item)}
-              className="flex items-center justify-between p-4 transition-all duration-300 ease-in-out border-b cursor-pointer hover:bg-gray-100 hover:shadow-md"
+              className="flex items-center justify-between p-4 transition-all duration-300 ease-in-out border-b cursor-pointer last:border-b-0 hover:bg-gray-100 hover:shadow-md"
             >
               <div className="flex items-center justify-evenly max-sm:text-sm lg:text-lg">
                 <p className="text-lg font-medium text-gray-500 max-sm:text-sm sm:text-sm whitespace-nowrap md:text-[17px] xl:text-[17px]">
